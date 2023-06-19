@@ -1,6 +1,7 @@
 package ru.anb.hammerapp.adapter
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -25,7 +26,9 @@ class MovieAdapter() : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
+Log.d("position", "$position")
         val movie = startItems[position]
+        Log.d("onbind", "$movie")
         with(holder.binding) {
             mainName.text = movie.category
             text.text = movie.name
@@ -37,6 +40,7 @@ class MovieAdapter() : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
     @SuppressLint("NotifyDataSetChanged")
     fun setMovies(movies: List<Model>) {
+        Log.d("adapter", "$movies")
         startItems = movies
         notifyDataSetChanged()
     }

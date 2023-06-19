@@ -15,7 +15,7 @@ import javax.inject.Inject
 class MainFragmentViewModel @Inject constructor(private val repository: MovieRepository) :
     ViewModel() {
 
-    private val _authState = MutableStateFlow<LoadState<List<Model>>>(LoadState.Success())
+    private val _authState = MutableStateFlow<LoadState<List<Model>>>(LoadState.Loading())
     val authState get() = _authState.asStateFlow()
 
     init {
