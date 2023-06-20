@@ -1,6 +1,7 @@
 package ru.anb.hammerapp.ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,7 @@ import kotlinx.coroutines.launch
 import ru.anb.hammerapp.LoadState
 import ru.anb.hammerapp.adapter.MovieAdapter
 import ru.anb.hammerapp.adapter.TagAdapter
+import ru.anb.hammerapp.adapter.TestData
 import ru.anb.hammerapp.databinding.FragmentMainBinding
 
 @AndroidEntryPoint
@@ -33,7 +35,6 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val tagAdapter = TagAdapter()
         val movieAdapter = MovieAdapter()
         binding.recyclerView.adapter = movieAdapter
         viewLifecycleOwner.lifecycleScope.launch {
@@ -42,13 +43,13 @@ class MainFragment : Fragment() {
 
                     if (it is LoadState.Success) {
 //                        Log.d("movie", "${it.data}")
-                        movieAdapter.setMovies(it.data!!)
+                        val list = mutableListOf<Any>(TestData.bannerList, TestData.tagList)
+                        list.addAll(it.data!!)
+                        movieAdapter.setMovies(list)
                     }
                 }
             }
-
         }
-
     }
 
     override fun onDestroyView() {

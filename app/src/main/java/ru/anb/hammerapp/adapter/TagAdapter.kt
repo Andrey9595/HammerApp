@@ -1,13 +1,15 @@
 package ru.anb.hammerapp.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ru.anb.hammerapp.databinding.TagItemBinding
+import ru.anb.hammerapp.model.TagModel
 
 class TagAdapter() : RecyclerView.Adapter<TagAdapter.TagViewHolder>() {
 
-    private var tagList = emptyList<String>()
+    private var tagList = emptyList<TagModel>()
 
     class TagViewHolder(val binding: TagItemBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -23,12 +25,13 @@ class TagAdapter() : RecyclerView.Adapter<TagAdapter.TagViewHolder>() {
 
     override fun onBindViewHolder(holder: TagViewHolder, position: Int) {
         val tag = tagList[position]
-        holder.binding.tagText.text = tag
+        holder.binding.tagText.text = tag.tagText
     }
 
     override fun getItemCount() = tagList.size
 
-    fun setData(data: List<String>){
+    @SuppressLint("NotifyDataSetChanged")
+    fun setData(data: List<TagModel>){
         tagList = data
         notifyDataSetChanged()
     }

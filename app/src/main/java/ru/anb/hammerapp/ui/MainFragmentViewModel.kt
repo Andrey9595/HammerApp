@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import ru.anb.hammerapp.LoadState
-import ru.anb.hammerapp.model.Model
+import ru.anb.hammerapp.model.MovieModel
 import ru.anb.hammerapp.reposutory.MovieRepository
 import javax.inject.Inject
 
@@ -15,7 +15,7 @@ import javax.inject.Inject
 class MainFragmentViewModel @Inject constructor(private val repository: MovieRepository) :
     ViewModel() {
 
-    private val _authState = MutableStateFlow<LoadState<List<Model>>>(LoadState.Loading())
+    private val _authState = MutableStateFlow<LoadState<List<MovieModel>>>(LoadState.Loading())
     val authState get() = _authState.asStateFlow()
 
     init {
